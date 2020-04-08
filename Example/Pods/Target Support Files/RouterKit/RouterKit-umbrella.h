@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "NSObject+RT.h"
+#import "XZClassProtocolMediator.h"
+#import "XZWeakObjDeathNoti.h"
 
 FOUNDATION_EXPORT double RouterKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char RouterKitVersionString[];
