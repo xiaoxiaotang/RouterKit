@@ -1,15 +1,22 @@
 PODS:
-  - RouterKit (0.1.0)
+  - MJExtension (3.2.1)
+  - RouterKit (0.2.0):
+    - MJExtension
 
 DEPENDENCIES:
   - RouterKit (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - MJExtension
 
 EXTERNAL SOURCES:
   RouterKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RouterKit: 94b863694d67fe2141c93c5ee6b89e714fb69d37
+  MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  RouterKit: 97269565d763c8b304f7b5754c0c6efe6405b868
 
 PODFILE CHECKSUM: 4f8faf9bb90fc0726775bb0a6f0ad9a58246b0e2
 

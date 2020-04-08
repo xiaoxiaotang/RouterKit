@@ -33,9 +33,9 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _innerQueue = dispatch_queue_create("com.saic.router", DISPATCH_QUEUE_SERIAL);
-        _scheme = @"saic";
-        _router = @"saicmobility.com";
+        _innerQueue = dispatch_queue_create("com.xz.router", DISPATCH_QUEUE_SERIAL);
+        _scheme = @"xz";
+        _router = @"xz.com";
         _handler = @"handler";
         _protocol = @"protocol";
         _parameterKey = @"body";
@@ -108,11 +108,11 @@
 #pragma mark -- handler
 @implementation XZClassProtocolMediator (Handler)
 
-- (void)registerHandler:(XZClassProtocolMediatorHandler)handler forKey:(NSString*)key {
+- (void)registerHandler:(XZClassProtocolMediatorBlock)handler forKey:(NSString*)key {
     [self registerHandler:handler forKey:key holder:nil];
 }
 
-- (void)registerHandler:(XZClassProtocolMediatorHandler)handler forKey:(NSString*)key holder:(nullable NSObject*)holder {
+- (void)registerHandler:(XZClassProtocolMediatorBlock)handler forKey:(NSString*)key holder:(nullable NSObject*)holder {
     if (!handler || !key.length) {
         return;
     }
@@ -142,8 +142,8 @@
     }
 }
 
-- (_Nullable XZClassProtocolMediatorHandler)handlerForKey:(NSString*)key {
-    __block XZClassProtocolMediatorHandler aHandler;
+- (_Nullable XZClassProtocolMediatorBlock)handlerForKey:(NSString*)key {
+    __block XZClassProtocolMediatorBlock aHandler;
     dispatch_sync(_innerQueue, ^{
         aHandler = [self->_handlerDict objectForKey:key];
     });

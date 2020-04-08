@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-typedef void(^XZClassProtocolMediatorHandler)(NSDictionary * _Nullable param,  void (^ _Nullable completion)(_Nullable id data));
+typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  void (^ _Nullable completion)(_Nullable id data));
 
 /** 协议定义 */
 @interface XZClassProtocolMediator : NSObject
@@ -83,7 +83,7 @@ typedef void(^XZClassProtocolMediatorHandler)(NSDictionary * _Nullable param,  v
  *  注册全局方法
  *  @param key 键
  */
-- (void)registerHandler:(XZClassProtocolMediatorHandler)handler
+- (void)registerHandler:(XZClassProtocolMediatorBlock)handler
                  forKey:(NSString *)key;
 
 /**
@@ -91,7 +91,7 @@ typedef void(^XZClassProtocolMediatorHandler)(NSDictionary * _Nullable param,  v
  *  @param key 键
  *  @param holder 持有者自动销毁全局方法
  */
-- (void)registerHandler:(XZClassProtocolMediatorHandler)handler
+- (void)registerHandler:(XZClassProtocolMediatorBlock)handler
                  forKey:(NSString *)key
                  holder:(nullable NSObject *)holder;
 
@@ -103,7 +103,7 @@ typedef void(^XZClassProtocolMediatorHandler)(NSDictionary * _Nullable param,  v
 /**
  *  获取全局方法
  */
-- (_Nullable XZClassProtocolMediatorHandler)handlerForKey:(NSString *)key;
+- (_Nullable XZClassProtocolMediatorBlock)handlerForKey:(NSString *)key;
 
 
 /**
