@@ -1,0 +1,16 @@
+PODS:
+  - RouterKit (0.1.0)
+
+DEPENDENCIES:
+  - RouterKit (from `../`)
+
+EXTERNAL SOURCES:
+  RouterKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RouterKit: a72b73e271d16ab410c16ca5805f1fea355f06bf
+
+PODFILE CHECKSUM: 4f8faf9bb90fc0726775bb0a6f0ad9a58246b0e2
+
+COCOAPODS: 1.9.1
