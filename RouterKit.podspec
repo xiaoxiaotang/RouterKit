@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RouterKit'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'A short description of RouterKit.'
 
 # This description is used to generate tags and improve search results.
@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
   #   'RouterKit' => ['RouterKit/Assets/*.png']
   # }
 
-   s.public_header_files = 'RouterKit/Classes/XZRouterKit.h'
+#   s.public_header_files = 'RouterKit/Classes/XZRouterKit.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'MJExtension'
 end
