@@ -1,22 +1,22 @@
 //
-//  XZWeakObjDeathNoti.m
+//  WYWeakObjDeathNoti.m
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZWeakObjDeathNoti.h"
+#import "WYWeakObjDeathNoti.h"
 #import "NSObject+RT.h"
 
-@interface XZWeakObjDeathNoti ()
+@interface WYWeakObjDeathNoti ()
 
-@property (nonatomic, copy) XZWeakObjDeathNotiBlock aBlock;
+@property (nonatomic, copy) WYWeakObjDeathNotiBlock aBlock;
 
 @end
 
-@implementation XZWeakObjDeathNoti
+@implementation WYWeakObjDeathNoti
 
-- (void)setBlock:(XZWeakObjDeathNotiBlock)block {
+- (void)setBlock:(WYWeakObjDeathNotiBlock)block {
     self.aBlock = block;
 }
 

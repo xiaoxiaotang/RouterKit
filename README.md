@@ -27,3 +27,7 @@ xiaozhan, Yu.Wang@zhan.com
 ## License
 
 RouterKit is available under the MIT license. See the LICENSE file for more info.
+
+pod repo push 230-privatepodspecs RouterKit.podspec --allow-warnings --verbose --use-libraries
+
+

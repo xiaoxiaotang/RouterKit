@@ -1,5 +1,5 @@
 //
-//  XZWeakObjDeathNoti.h
+//  WYWeakObjDeathNoti.h
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
@@ -10,16 +10,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //当owner释放的时候通知block
-@class XZWeakObjDeathNoti;
+@class WYWeakObjDeathNoti;
 
-typedef void(^XZWeakObjDeathNotiBlock)(XZWeakObjDeathNoti *sender);
+typedef void(^WYWeakObjDeathNotiBlock)(WYWeakObjDeathNoti *sender);
 
-@interface XZWeakObjDeathNoti : NSObject
+@interface WYWeakObjDeathNoti : NSObject
 
 @property (nonatomic, weak) id owner;//持有对象
 
 //回调
-- (void)setBlock:(XZWeakObjDeathNotiBlock)block;
+- (void)setBlock:(WYWeakObjDeathNotiBlock)block;
 
 @end
 

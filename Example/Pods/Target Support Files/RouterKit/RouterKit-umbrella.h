@@ -10,7 +10,15 @@
 #endif
 #endif
 
-#import "XZRouterKit.h"
+#import "NSObject+ExtraData.h"
+#import "NSObject+RT.h"
+#import "WYClassProtocolMediator.h"
+#import "WYHandle.h"
+#import "WYProtocol.h"
+#import "WYRouter.h"
+#import "WYRouterKit.h"
+#import "WYRouterProtocolHandle.h"
+#import "WYWeakObjDeathNoti.h"
 
 FOUNDATION_EXPORT double RouterKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char RouterKitVersionString[];

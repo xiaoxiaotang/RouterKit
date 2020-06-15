@@ -1,46 +1,46 @@
 //
-//  XZProtocol.m
+//  WYProtocol.m
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZProtocol.h"
+#import "WYProtocol.h"
 #import "NSObject+ExtraData.h"
-#import "XZClassProtocolMediator.h"
+#import "WYClassProtocolMediator.h"
 
-@interface XZProtocol()
+@interface WYProtocol()
 @property (nonatomic, strong, readonly) id destination;
 @property (nonatomic, strong) Class destinationClass;//获取destination的Class
 @property (nonatomic, strong) id destinationInstance;//获取destination的实例对象
 @end
 
 
-@implementation XZProtocol
+@implementation WYProtocol
 
 + (id)createInstanceWithProtocolKey:(Protocol *)protocolKey {
-    XZProtocol *protocol = [[XZProtocol alloc] initWithProtocolKey:protocolKey];
+    WYProtocol *protocol = [[WYProtocol alloc] initWithProtocolKey:protocolKey];
     return [protocol submit];
 }
 
 + (id)sharedInstanceWithProtocolKey:(Protocol *)protocolKey {
-    XZProtocol *protocol = [[XZProtocol alloc] initWithProtocolInstanceKey:protocolKey];
+    WYProtocol *protocol = [[WYProtocol alloc] initWithProtocolInstanceKey:protocolKey];
     return [protocol submit];
 }
 
 + (id)replaceSharedInstance:(id)instance protocolKey:(Protocol *)protocolKey {
-    XZProtocol *protocol = [[XZProtocol alloc] initWithProtocolInstanceKey:protocolKey aInstance:instance];
+    WYProtocol *protocol = [[WYProtocol alloc] initWithProtocolInstanceKey:protocolKey aInstance:instance];
     return [protocol submit];
 }
 
 + (Class)classFromProtocol:(Protocol *)protocolKey {
-    XZProtocol *protocol = [[XZProtocol alloc] initWithProtocolKey:protocolKey];
+    WYProtocol *protocol = [[WYProtocol alloc] initWithProtocolKey:protocolKey];
     return protocol.destinationClass;
 }
 
 - (instancetype)initWithProtocolKey:(Protocol *)protocolKey {
     if (self = [super init]) {
-        _context = [XZClassProtocolMediator defaultContext];
+        _context = [WYClassProtocolMediator defaultContext];
         self.destinationClass = [self.context protocolClassForKey:protocolKey];
     }
     return self;
@@ -48,7 +48,7 @@
 
 - (instancetype)initWithProtocolInstanceKey:(Protocol *)protocolKey {
     if (self = [super init]) {
-        _context = [XZClassProtocolMediator defaultContext];
+        _context = [WYClassProtocolMediator defaultContext];
         
         id instance = [self.context protocolInstanceClassForKey:protocolKey];
         if (instance) {
@@ -63,7 +63,7 @@
 
 - (instancetype)initWithProtocolInstanceKey:(Protocol *)protocolKey aInstance:(id)instance {
     if (self = [super init]) {
-        _context = [XZClassProtocolMediator defaultContext];
+        _context = [WYClassProtocolMediator defaultContext];
         [self.context registerProtocolInstance:instance forKey:protocolKey];
         self.destinationInstance = instance;
     }

@@ -1,5 +1,5 @@
 //
-//  XZClassProtocolMediator.h
+//  WYClassProtocolMediator.h
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
@@ -10,15 +10,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  void (^ _Nullable completion)(_Nullable id data));
+typedef void(^WYClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  void (^ _Nullable completion)(_Nullable id data));
 
 /** 协议定义 */
-@interface XZClassProtocolMediator : NSObject
+@interface WYClassProtocolMediator : NSObject
 
 /** 协议头 默认：kAppScheme */
 @property (nonatomic, strong) NSString *scheme;
 
-/** 跳转页面 默认：xz.com */
+/** 跳转页面 默认：wy.com */
 @property (nonatomic, strong) NSString *router;
 
 /** 全局方法 默认：handler */
@@ -39,7 +39,7 @@ typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  voi
 
 
 /** Router的处理 */
-@interface XZClassProtocolMediator(Router)
+@interface WYClassProtocolMediator(Router)
 
 /**
  *  注册视图控制器类（UIViewController or UIView）
@@ -76,14 +76,14 @@ typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  voi
 @end
 
 /** Handler的处理 */
-@interface XZClassProtocolMediator(Handler)
+@interface WYClassProtocolMediator(Handler)
 
 
 /**
  *  注册全局方法
  *  @param key 键
  */
-- (void)registerHandler:(XZClassProtocolMediatorBlock)handler
+- (void)registerHandler:(WYClassProtocolMediatorBlock)handler
                  forKey:(NSString *)key;
 
 /**
@@ -91,7 +91,7 @@ typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  voi
  *  @param key 键
  *  @param holder 持有者自动销毁全局方法
  */
-- (void)registerHandler:(XZClassProtocolMediatorBlock)handler
+- (void)registerHandler:(WYClassProtocolMediatorBlock)handler
                  forKey:(NSString *)key
                  holder:(nullable NSObject *)holder;
 
@@ -103,7 +103,7 @@ typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  voi
 /**
  *  获取全局方法
  */
-- (_Nullable XZClassProtocolMediatorBlock)handlerForKey:(NSString *)key;
+- (_Nullable WYClassProtocolMediatorBlock)handlerForKey:(NSString *)key;
 
 
 /**
@@ -128,7 +128,7 @@ typedef void(^XZClassProtocolMediatorBlock)(NSDictionary * _Nullable param,  voi
 
 
 /** Protocol的处理 */
-@interface XZClassProtocolMediator(Protocol)
+@interface WYClassProtocolMediator(Protocol)
 
 /**
  *  注册 实现Protocol的类

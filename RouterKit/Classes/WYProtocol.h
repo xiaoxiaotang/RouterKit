@@ -1,15 +1,15 @@
 //
-//  XZProtocol.h
+//  WYProtocol.h
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZRouterProtocolHandle.h"
+#import "WYRouterProtocolHandle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XZProtocol : XZRouterProtocolHandle
+@interface WYProtocol : WYRouterProtocolHandle
 
 /**
  *   实现NYProtocol对象

@@ -1,17 +1,17 @@
 //
-//  XZClassProtocolMediator.m
+//  WYClassProtocolMediator.m
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZClassProtocolMediator.h"
-#import "XZWeakObjDeathNoti.h"
+#import "WYClassProtocolMediator.h"
+#import "WYWeakObjDeathNoti.h"
 #import <malloc/malloc.h>
 #import <objc/runtime.h>
 
 #pragma mark -- Context
-@implementation XZClassProtocolMediator {
+@implementation WYClassProtocolMediator {
     NSMutableDictionary *_handlerDict;
     NSMutableDictionary *_handlerInstanceDict;
     NSMutableDictionary *_routerDict;
@@ -23,7 +23,7 @@
 
 + (instancetype) defaultContext {
     static dispatch_once_t once;
-    static XZClassProtocolMediator * _singleton;
+    static WYClassProtocolMediator * _singleton;
     dispatch_once(&once, ^{
         _singleton = [[self alloc] init];
     });
@@ -33,9 +33,9 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _innerQueue = dispatch_queue_create("com.xz.router", DISPATCH_QUEUE_SERIAL);
-        _scheme = @"xz";
-        _router = @"xz.com";
+        _innerQueue = dispatch_queue_create("com.wy.router", DISPATCH_QUEUE_SERIAL);
+        _scheme = @"wy";
+        _router = @"wy.com";
         _handler = @"handler";
         _protocol = @"protocol";
         _parameterKey = @"body";
@@ -53,7 +53,7 @@
 
 
 #pragma mark -- router
-@implementation XZClassProtocolMediator (Router)
+@implementation WYClassProtocolMediator (Router)
 
 - (void)registerRouterClass:(Class)aClass forKey:(NSString*)key {
     
@@ -106,13 +106,13 @@
 
 
 #pragma mark -- handler
-@implementation XZClassProtocolMediator (Handler)
+@implementation WYClassProtocolMediator (Handler)
 
-- (void)registerHandler:(XZClassProtocolMediatorBlock)handler forKey:(NSString*)key {
+- (void)registerHandler:(WYClassProtocolMediatorBlock)handler forKey:(NSString*)key {
     [self registerHandler:handler forKey:key holder:nil];
 }
 
-- (void)registerHandler:(XZClassProtocolMediatorBlock)handler forKey:(NSString*)key holder:(nullable NSObject*)holder {
+- (void)registerHandler:(WYClassProtocolMediatorBlock)handler forKey:(NSString*)key holder:(nullable NSObject*)holder {
     if (!handler || !key.length) {
         return;
     }
@@ -120,13 +120,13 @@
     dispatch_async(_innerQueue, ^{
         [self->_handlerDict setObject:handler forKey:key];
         if (holder) {
-            XZWeakObjDeathNoti *deadNotifier = [[XZWeakObjDeathNoti alloc] init];
+            WYWeakObjDeathNoti *deadNotifier = [[WYWeakObjDeathNoti alloc] init];
             deadNotifier.owner = holder;
             
             //weak strong self for retain cycle
             __weak typeof(self)weakSelf = self;
             //目的在于，持有者在完成销毁时，自动把注册在字典里的Handler方法从内存中剔除。
-            [deadNotifier setBlock:^(XZWeakObjDeathNoti *sender) {
+            [deadNotifier setBlock:^(WYWeakObjDeathNoti *sender) {
                 __strong typeof(weakSelf)self = weakSelf;
                 [self unRegisterHandlerForKey:key];
             }];
@@ -142,8 +142,8 @@
     }
 }
 
-- (_Nullable XZClassProtocolMediatorBlock)handlerForKey:(NSString*)key {
-    __block XZClassProtocolMediatorBlock aHandler;
+- (_Nullable WYClassProtocolMediatorBlock)handlerForKey:(NSString*)key {
+    __block WYClassProtocolMediatorBlock aHandler;
     dispatch_sync(_innerQueue, ^{
         aHandler = [self->_handlerDict objectForKey:key];
     });
@@ -183,7 +183,7 @@
 
 
 #pragma mark -- protocol
-@implementation XZClassProtocolMediator(Protocol)
+@implementation WYClassProtocolMediator(Protocol)
 
 
 - (void)registerProtocolClass:(Class)aClass

@@ -1,5 +1,5 @@
 //
-//  XZRouterProtocolHandle.h
+//  WYRouterProtocolHandle.h
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
@@ -12,17 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXTERN UIViewController *AutoGetRoSourceViewController(void);
 FOUNDATION_EXTERN UINavigationController * _Nullable  AutoGetNavigationViewController(UIViewController *sourceVC);
 
-typedef void(^XZRouterProtocolHandleCompletionBlock)(__nullable id data);
+typedef void(^WYRouterProtocolHandleCompletionBlock)(__nullable id data);
 
 
-@class XZClassProtocolMediator;
-@interface XZRouterProtocolHandle : NSObject {
+@class WYClassProtocolMediator;
+@interface WYRouterProtocolHandle : NSObject {
     id _destination;
-    XZClassProtocolMediator *_context;
+    WYClassProtocolMediator *_context;
 }
 
 //使用 [NYIntentContext defaultContext]  如果谁发现context拿不到上下文或者串了 微信akries
-@property (nonatomic, strong, readonly) XZClassProtocolMediator *context;
+@property (nonatomic, strong, readonly) WYClassProtocolMediator *context;
 
 //解析后的key
 @property (nonatomic, copy ,nullable) NSString *key;
@@ -40,10 +40,10 @@ typedef void(^XZRouterProtocolHandleCompletionBlock)(__nullable id data);
  *  destinationURLString 传递url
  */
 + (nullable instancetype)intentWithURLString:(NSString *)destinationURLString
-                                     context:(nullable XZClassProtocolMediator*)context;
+                                     context:(nullable WYClassProtocolMediator*)context;
 
 + (nullable instancetype)intentWithURL:(NSURL *)destinationURL
-                               context:(nullable XZClassProtocolMediator*)context;
+                               context:(nullable WYClassProtocolMediator*)context;
 
 /**
  *  安全添加元素
@@ -63,7 +63,7 @@ typedef void(^XZRouterProtocolHandleCompletionBlock)(__nullable id data);
 /**
  *  提交行动，完成回调
  */
-- (id)submitWithCompletion:(nullable XZRouterProtocolHandleCompletionBlock)completionBlock;
+- (id)submitWithCompletion:(nullable WYRouterProtocolHandleCompletionBlock)completionBlock;
 
 @end
 

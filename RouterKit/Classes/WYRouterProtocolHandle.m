@@ -1,15 +1,15 @@
 //
-//  XZRouterProtocolHandle.m
+//  WYRouterProtocolHandle.m
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZRouterProtocolHandle.h"
-#import "XZRouter.h"
-#import "XZHandle.h"
-#import "XZProtocol.h"
-#import "XZClassProtocolMediator.h"
+#import "WYRouterProtocolHandle.h"
+#import "WYRouter.h"
+#import "WYHandle.h"
+#import "WYProtocol.h"
+#import "WYClassProtocolMediator.h"
 
 #import <UIKit/UIKit.h>
 #import "NSObject+ExtraData.h"
@@ -52,21 +52,21 @@ UINavigationController* AutoGetNavigationViewController(UIViewController *source
 }
 
 
-@implementation XZRouterProtocolHandle
+@implementation WYRouterProtocolHandle
 
 @dynamic extraData;//使用NSObject+ExtraData中的setter和getter，所以此处不需要自己合成setter和getter
 
 + (nullable instancetype)intentWithURLString:(NSString *)destinationURLString
-                                     context:(nullable XZClassProtocolMediator*)context {
+                                     context:(nullable WYClassProtocolMediator*)context {
     NSURL *link = [NSURL URLWithString:[destinationURLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     return [self intentWithURL:link context:context];
 }
 
 + (nullable instancetype)intentWithURL:(NSURL *)destinationURL
-                               context:(nullable XZClassProtocolMediator*)context {
+                               context:(nullable WYClassProtocolMediator*)context {
     
     if (!context) {
-        context = [XZClassProtocolMediator defaultContext];
+        context = [WYClassProtocolMediator defaultContext];
     }
     if (![destinationURL.scheme isEqualToString:context.scheme])return nil;
     
@@ -81,13 +81,13 @@ UINavigationController* AutoGetNavigationViewController(UIViewController *source
     
     query = [query stringByRemovingPercentEncoding];
     
-    XZRouterProtocolHandle *aIntent = nil;//默认handler
+    WYRouterProtocolHandle *aIntent = nil;//默认handler
     if ([host isEqualToString:context.router]) {
-        aIntent = [[XZRouter alloc] initWithSource:nil routerKey:path context:context];
+        aIntent = [[WYRouter alloc] initWithSource:nil routerKey:path context:context];
     } else if ([host isEqualToString:context.handler]){
-        aIntent = [[XZHandle alloc] initWithHandlerKey:path context:context];
+        aIntent = [[WYHandle alloc] initWithHandlerKey:path context:context];
     } else if ([host isEqualToString:context.protocol]){
-        aIntent = [XZProtocol createInstanceWithProtocolKey:NSProtocolFromString(path)];
+        aIntent = [WYProtocol createInstanceWithProtocolKey:NSProtocolFromString(path)];
     }
     
     if (aIntent) {
@@ -117,7 +117,7 @@ UINavigationController* AutoGetNavigationViewController(UIViewController *source
     return [self submitWithCompletion:nil];
 }
 
-- (id)submitWithCompletion:(XZRouterProtocolHandleCompletionBlock)completionBlock {
+- (id)submitWithCompletion:(WYRouterProtocolHandleCompletionBlock)completionBlock {
     return nil;
 }
 
@@ -132,7 +132,7 @@ UINavigationController* AutoGetNavigationViewController(UIViewController *source
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     NSArray *subStrings = [jsonString componentsSeparatedByString:@"="];
-    NSString *body = [XZClassProtocolMediator defaultContext].parameterKey;
+    NSString *body = [WYClassProtocolMediator defaultContext].parameterKey;
     if ([body isEqualToString:subStrings[0]]) {
         if (subStrings[1]) {
             NSRange endCharRange = [jsonString rangeOfString:@"}" options:NSBackwardsSearch];

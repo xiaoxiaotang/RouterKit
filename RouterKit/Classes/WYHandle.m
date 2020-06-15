@@ -1,29 +1,29 @@
 //
-//  XZHandle.m
+//  WYHandle.m
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZHandle.h"
-#import "XZClassProtocolMediator.h"
+#import "WYHandle.h"
+#import "WYClassProtocolMediator.h"
 
-NSString const *XZHandlerCallBackKey = @"handlerCallBackKey";
+NSString const *WYHandlerCallBackKey = @"handlerCallBackKey";
 
-@interface XZHandle ()
+@interface WYHandle ()
 
 @property (nonatomic, strong) NSString *handlerKey;
 
 @end
 
-@implementation XZHandle
+@implementation WYHandle
 
 + (id)realizeWithHandlerInstanceKey:(NSString *)handlerInstanceKey {
-    id instance = [[XZClassProtocolMediator defaultContext] handlerInstanceForKey:handlerInstanceKey];
+    id instance = [[WYClassProtocolMediator defaultContext] handlerInstanceForKey:handlerInstanceKey];
     if (!instance) {
         Class aClass = NSClassFromString(handlerInstanceKey);
         instance = [[aClass alloc] init];
-        [[XZClassProtocolMediator defaultContext] registerHandlerInstance:instance forKey:handlerInstanceKey];
+        [[WYClassProtocolMediator defaultContext] registerHandlerInstance:instance forKey:handlerInstanceKey];
     }
     return instance;
 }
@@ -33,9 +33,9 @@ NSString const *XZHandlerCallBackKey = @"handlerCallBackKey";
 }
 
 - (instancetype)initWithHandlerKey:(NSString*)handlerKey
-                           context:(nullable XZClassProtocolMediator*)context {
+                           context:(nullable WYClassProtocolMediator*)context {
     if (self = [super init]) {
-        _context = context ?: [XZClassProtocolMediator defaultContext];
+        _context = context ?: [WYClassProtocolMediator defaultContext];
         self.handlerKey = handlerKey;
     }
     return self;
@@ -47,7 +47,7 @@ NSString const *XZHandlerCallBackKey = @"handlerCallBackKey";
         
         NSString *key;
         NSDictionary *dict;
-        XZRouterProtocolHandleCompletionBlock block;
+        WYRouterProtocolHandleCompletionBlock block;
         
         if ([param isKindOfClass:[NSString class]]) {
             key = param;
@@ -67,11 +67,11 @@ NSString const *XZHandlerCallBackKey = @"handlerCallBackKey";
             }
         }
         
-        XZHandle *handler = [[XZHandle alloc] initWithHandlerKey:key];
+        WYHandle *handler = [[WYHandle alloc] initWithHandlerKey:key];
         [handler setExtraDataWithDictionary:dict];
         [handler submitWithCompletion:^(id  _Nullable data) {
             if (isReleaseHandler) {
-                [[XZClassProtocolMediator defaultContext] unRegisterHandlerForKey:key];
+                [[WYClassProtocolMediator defaultContext] unRegisterHandlerForKey:key];
             }
             if (block) {
                 block(data);
@@ -81,9 +81,9 @@ NSString const *XZHandlerCallBackKey = @"handlerCallBackKey";
 }
 
 
-- (id)submitWithCompletion:(XZRouterProtocolHandleCompletionBlock)completionBlock {
+- (id)submitWithCompletion:(WYRouterProtocolHandleCompletionBlock)completionBlock {
     
-    XZClassProtocolMediatorBlock block = (XZClassProtocolMediatorBlock)self.destination;
+    WYClassProtocolMediatorBlock block = (WYClassProtocolMediatorBlock)self.destination;
     if (block) {
         block(self.extraData, completionBlock);
     }
@@ -92,7 +92,7 @@ NSString const *XZHandlerCallBackKey = @"handlerCallBackKey";
 
 
 #pragma mark - get / set
-- (XZRouterProtocolHandleCompletionBlock)destination {
+- (WYRouterProtocolHandleCompletionBlock)destination {
     if (!_destination) {
         _destination = [self.context handlerForKey:self.handlerKey];
     }

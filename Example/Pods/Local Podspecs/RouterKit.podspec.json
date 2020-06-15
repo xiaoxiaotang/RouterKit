@@ -1,6 +1,6 @@
 {
   "name": "RouterKit",
-  "version": "0.2.0",
+  "version": "0.6.0",
   "summary": "A short description of RouterKit.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "git@134.175.230.26:iOS_Compoent/RouterKit.git",
@@ -13,13 +13,12 @@
   },
   "source": {
     "git": "git@134.175.230.26:iOS_Compoent/RouterKit.git",
-    "tag": "0.2.0"
+    "tag": "0.6.0"
   },
   "platforms": {
     "ios": "9.0"
   },
   "source_files": "RouterKit/Classes/*.{h,m}",
-  "public_header_files": "RouterKit/Classes/XZRouterKit.h",
   "dependencies": {
     "MJExtension": [
 

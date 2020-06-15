@@ -1,21 +1,21 @@
 //
-//  XZRouter.m
+//  WYRouter.m
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZRouter.h"
-#import "XZClassProtocolMediator.h"
+#import "WYRouter.h"
+#import "WYClassProtocolMediator.h"
 #import "NSObject+ExtraData.h"
 
-@interface XZRouter()
+@interface WYRouter()
 @property (nonatomic, strong) UIViewController *routerSource;//当前的控制器 ps：视图层级最高的控制器
 @property (nonatomic, strong) Class destinationClass;//获取destination的Class
 @property (nonatomic, copy) NSString *routerKey;
 @end
 
-@implementation XZRouter
+@implementation WYRouter
 
 - (instancetype)initWithSource:(UIViewController*)source
                      routerKey:(NSString*)routerKey {
@@ -29,9 +29,9 @@
 
 - (instancetype)initWithSource:(UIViewController *)source
                      routerKey:(NSString *)routerKey
-                       context:(XZClassProtocolMediator *)context {
+                       context:(WYClassProtocolMediator *)context {
     if (self = [super init]) {
-        _context = context ?: [XZClassProtocolMediator defaultContext];
+        _context = context ?: [WYClassProtocolMediator defaultContext];
         self.routerKey = routerKey;
         self.routerSource = source;
         self.animation = true;
@@ -42,13 +42,13 @@
     
 }
 
-- (instancetype)initWithSource:(nullable UIViewController*)source routerProtocolKey:(Protocol *)protocolKey context:(nullable XZClassProtocolMediator*)context {
+- (instancetype)initWithSource:(nullable UIViewController*)source routerProtocolKey:(Protocol *)protocolKey context:(nullable WYClassProtocolMediator*)context {
     NSString *key = NSStringFromProtocol(protocolKey);
     return [self initWithSource:source routerKey:key context:context];
 }
 
 
-- (id)submitWithCompletion:(XZRouterProtocolHandleCompletionBlock)completionBlock {
+- (id)submitWithCompletion:(WYRouterProtocolHandleCompletionBlock)completionBlock {
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [[UIApplication sharedApplication].keyWindow endEditing:true];
@@ -65,18 +65,18 @@
 #pragma mark - Private
 
 //自动判断打开方式
-- (XZRouterOptions)_autoGetActionOptions {
-    return XZRouterActionPush;
+- (WYRouterOptions)_autoGetActionOptions {
+    return WYRouterActionPush;
 }
 //跳转
-- (void)_submitRouterWithCompletion:(XZRouterProtocolHandleCompletionBlock)completionBlock {
+- (void)_submitRouterWithCompletion:(WYRouterProtocolHandleCompletionBlock)completionBlock {
     //当前控制器
     UIViewController *sourceViewController = self.routerSource;
     //需要跳转的控制器
     UIViewController *destinationViewController = self.destination;
     
     
-    if (self.options & XZRouterActionPresent) {
+    if (self.options & WYRouterActionPresent) {
         
         UIViewController *destinationVC = destinationViewController;
         
@@ -86,23 +86,23 @@
             } else {
                 destinationVC.modalPresentationStyle = UIModalPresentationFullScreen;
             }
-            if (self.options & XZRouterPresentPresentStyleFullScreen) {
+            if (self.options & WYRouterPresentPresentStyleFullScreen) {
                 destinationVC.modalPresentationStyle = UIModalPresentationFullScreen;
-            } else if (self.options & XZRouterPresentPresentStylePageSheet) {
+            } else if (self.options & WYRouterPresentPresentStylePageSheet) {
                 destinationVC.modalPresentationStyle = UIModalPresentationPageSheet;
-            }else if (self.options & XZRouterPresentPresentStyleFormSheet) {
+            }else if (self.options & WYRouterPresentPresentStyleFormSheet) {
                 destinationVC.modalPresentationStyle = UIModalPresentationFormSheet;
-            } else if (self.options & XZRouterPresentPresentStyleCurrentContext) {
+            } else if (self.options & WYRouterPresentPresentStyleCurrentContext) {
                 destinationVC.modalPresentationStyle = UIModalPresentationCurrentContext;
-            }else if (self.options & XZRouterPresentPresentStyleCustom) {
+            }else if (self.options & WYRouterPresentPresentStyleCustom) {
                 destinationVC.modalPresentationStyle = UIModalPresentationCustom;
-            } else if (self.options & XZRouterPresentPresentStyleOverFullScreen) {
+            } else if (self.options & WYRouterPresentPresentStyleOverFullScreen) {
                 destinationVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-            }else if (self.options & XZRouterPresentPresentStyleOverCurrentContext) {
+            }else if (self.options & WYRouterPresentPresentStyleOverCurrentContext) {
                 destinationVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-            } else if (self.options & XZRouterPresentPresentStylePopover) {
+            } else if (self.options & WYRouterPresentPresentStylePopover) {
                 destinationVC.modalPresentationStyle = UIModalPresentationPopover;
-            } else if (self.options & XZRouterPresentPresentStyleNone) {
+            } else if (self.options & WYRouterPresentPresentStyleNone) {
                 destinationVC.modalPresentationStyle = UIModalPresentationNone;
             }
         }
@@ -115,7 +115,7 @@
                                              }
                                          }];
         
-    } else if (self.options & XZRouterActionPush) {
+    } else if (self.options & WYRouterActionPush) {
         
         //导航头
         UINavigationController *navigationController = AutoGetNavigationViewController(sourceViewController);

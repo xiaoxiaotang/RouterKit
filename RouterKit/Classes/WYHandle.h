@@ -1,20 +1,20 @@
 //
-//  XZHandle.h
+//  WYHandle.h
 //  RouterKit
 //
 //  Created by 小站 on 2020/4/8.
 //
 
-#import "XZRouterProtocolHandle.h"
+#import "WYRouterProtocolHandle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN NSString const *XZHandlerCallBackKey;
+FOUNDATION_EXTERN NSString const *WYHandlerCallBackKey;
 
-@class XZClassProtocolMediator;
-@interface XZHandle : XZRouterProtocolHandle
+@class WYClassProtocolMediator;
+@interface WYHandle : WYRouterProtocolHandle
 
-@property (nonatomic, copy, readonly) XZRouterProtocolHandleCompletionBlock destination;//回调
+@property (nonatomic, copy, readonly) WYRouterProtocolHandleCompletionBlock destination;//回调
 
 /**
  *   NYHandler 对应的对象实例
@@ -40,7 +40,7 @@ FOUNDATION_EXTERN NSString const *XZHandlerCallBackKey;
  *
  */
 - (instancetype)initWithHandlerKey:(NSString *)handlerKey
-                           context:(nullable XZClassProtocolMediator *)context;
+                           context:(nullable WYClassProtocolMediator *)context;
 
 /**
  *  批量执行handler
